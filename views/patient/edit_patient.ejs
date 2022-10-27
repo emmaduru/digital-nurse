@@ -1,0 +1,53 @@
+<%- include("../includes/sidebar_top") %>
+    <h2 class="text-center">Edit Patient Details</h2>
+
+    <form id="edit-patient-form" class="mx-auto col-lg-6 col-md-8" method="post">
+        <div class="form-err"></div>
+        <div class="form-group mb-3">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="first_name" value="<%= patient.first_name %>" disabled class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="last_name" value="<%= patient.last_name %>" disabled class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" value="<%= patient.email %>" required class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label for="date_of_birth">Date Of Birth</label>
+            <input type="date" name="date_of_birth" id="date_of_birth" required value="<%= new Date(patient.date_of_birth).toLocaleDateString("en-CA") %>" disabled class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label for="phone_number">Phone Number</label>
+            <input type="tel" name="phone" id="phone" value="<%= patient.phone %>" required class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label for="diagnosis">Diagnosis</label>
+            <textarea name="diagnosis" id="diagnosis" cols="30" rows="3" required class="form-control"></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="ward">Ward</label>
+            <select name="ward" id="ward" required class="form-control">
+                <option value="Medical Ward" <% if (patient.ward === "Medical Ward") { %> selected <% } %> >Medical Ward</option>
+                <option value="Surgical Ward" <% if (patient.ward === "Surgical Ward") { %> selected <% } %> >Surgical Ward</option>
+                <option value="Accident and Emergency" <% if (patient.ward === "Accident and Emergency") { %> selected <% } %> >Accident and Emergency</option>
+                <option value="Theatre" <% if (patient.ward === "Theatre") { %> selected <% } %> >Theatre</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="address">Address</label>
+            <textarea name="address" required id="address" class="form-control" cols="30" rows="3"><%= patient.address %></textarea>
+        </div>
+
+        <input type="hidden" name="patient_id" value="<%= patient._id %>">
+
+        <div class="form-group mb-3">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+
+    <script src="/js/patient/edit_patient.js"></script>
+<%- include("../includes/sidebar_bottom") %> 

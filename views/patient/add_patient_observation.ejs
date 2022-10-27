@@ -1,0 +1,61 @@
+<%- include("../includes/sidebar_top") %> 
+    <h2 class="text-center">Add Observation</h2>
+
+    <form id="add-patient-observation-form" method="post" class="mx-auto col-lg-6 col-md-8">
+        <div class="form-err"></div>
+        <div class="form-group mb-3">
+            <label for="pulse">Pulse</label>
+            <input type="number" name="pulse" id="pulse" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="respiration">Respiration</label>
+            <input type="number" name="respiration" id="respiration" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="temperature">Temperature</label>
+            <input type="number" name="temperature" id="temperature" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="systolic_blood_pressure">Systolic Blood Pressure</label>
+            <input type="number" name="systolic_blood_pressure" id="systolic_blood_pressure" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="diastolic_blood_pressure">Diastolic Blood Pressure</label>
+            <input type="number" name="diastolic_blood_pressure" id="diastolic_blood_pressure" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="oxygen_saturation">Oxygen Saturation</label>
+            <input type="number" name="oxygen_saturation" id="oxygen_saturation" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="oxygen_sats_scale">Oxygen Saturation Scale</label>
+            <select name="oxygen_sats_scale" id="oxygen_sats_scale" class="form-control" required>
+                <option value="Scale 1">Scale 1</option>
+                <option value="Scale 2">Scale 2</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="on_oxygen">On Oxygen</label>
+            <select name="on_oxygen" id="on_oxygen" class="form-control" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="acvpu">ACVPU</label>
+            <select name="acvpu" id="acvpu" class="form-control" required>
+                <option value="Alert">Alert</option>
+                <option value="Confused">Confused</option>
+                <option value="Voice">Voice</option>
+                <option value="Pain">Pain</option>
+                <option value="Unresponsive">Unresponsive</option>
+            </select>
+        </div>
+        <input type="hidden" name="patient_id" value="<%= patient_id %>">
+        <div class="form-group mb-3">
+            <button type="submit" class="btn btn-primary">Add Observation</button>
+        </div>
+    </form>
+
+    <script src="/js/patient/add_patient_observation.js"></script>
+<%- include("../includes/sidebar_bottom") %> 

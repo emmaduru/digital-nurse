@@ -1,0 +1,68 @@
+<%- include("../includes/sidebar_top") %> 
+    <h2 class="text-center">Add Handover Sheet</h2>
+
+    <form id="add-patient-handover-form" method="post" class="mx-auto col-lg-6 col-md-8">
+        <div class="form-err"></div>
+        <div class="form-group mb-2">
+            <label for="patient_full_name">Full Name</label>
+            <input type="text" name="full_name" id="full_name" disabled value="<%= patient.full_name %> " class="form-control">
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="diagnosis">Diagnosis</label>
+            <input type="text" name="diagnosis" id="diagnosis" required value="<%= patient.diagnosis %>" class="form-control">
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="past_medical_history">Past Medical History</label>
+            <textarea name="past_medical_history" id="past_medical_history" cols="30" rows="5" disabled class="form-control"><%= patient.past_medical_history %></textarea>
+        </div>
+
+        <div class="form-group mb-2">
+            <h4>Care Essentials</h4>
+            <input type="checkbox" name="dnacpr" id="dnacpr" <% if (prev_handover.dnacpr) { %> checked <% } %>  value="Yes">
+            <label for="dnacpr">DNACPR</label><br>
+            <input type="checkbox" id="cannula" name="cannula" <% if (prev_handover.cannula) { %> checked <% } %>  value="Yes">
+            <label for="cannula">Cannula</label><br>
+            <input type="checkbox" id="catheter" name="catheter" <% if (prev_handover.catheter) { %> checked <% } %>  value="Yes">
+            <label for="catheter">Catheter</label><br>
+            <input type="checkbox" id="fluid_balance" name="fluid_balance" <% if (prev_handover.fluid_balance) { %> checked <% } %>  value="Yes">
+            <label for="fluid_balance">Fluid Balance</label><br>
+            <input type="checkbox" id="food_chart" name="food_chart" <% if (prev_handover.food_chart) { %> checked <% } %>  value="Yes">
+            <label for="food_chart">Food Chart</label><br>
+            <input type="checkbox" id="diabetic" name="diabetic" <% if (prev_handover.diabetic) { %> checked <% } %>  value="Yes">
+            <label for="diabetic">Diabetic</label><br>
+            <input type="checkbox" id="incontinent" name="incontinent" <% if (prev_handover.incontinent) { %> checked <% } %>  value="Yes">
+            <label for="incontinent">Incontinent</label><br>
+            <input type="checkbox" id="mffd" name="mffd" <% if (prev_handover.mffd) { %> checked <% } %>  value="Yes">
+            <label for="mffd">Medically Fit For Discharge</label><br>
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="tvn_issues">TVN Issues</label>
+            <input type="text" name="tvn_issues" id="tvn_issues" <% if (prev_handover.tvn_issues) { %> value="<%= prev_handover.tvn_issues %>" <% } %> class="form-control">
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="mobility">Mobility and Handling</label>
+            <input type="text" name="mobility_and_handling" id="mobility_and_handling" <% if (prev_handover.mobility_and_handling) { %> value="<%= prev_handover.mobility_and_handling %>" <% } %>  class="form-control">
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="diet_and_fluids">Diet and Fluids</label>
+            <input type="text" name="diet_and_fluids" id="diet_and_fluids" <% if (prev_handover.diet_and_fluids) { %> value="<%= prev_handover.diet_and_fluids %>" <% } %> class="form-control">
+        </div>
+
+        <div class="form-group mb-2">
+            <label for="jobs">Jobs to Do</label>
+            <textarea name="jobs" id="jobs" cols="30" rows="5" class="form-control"><% if (prev_handover.diet_and_fluids) { %> <%= prev_handover.jobs %> <% } %>
+            </textarea>
+        </div>
+
+        <input type="hidden" name="patient_id" value="<%= patient._id %>">
+
+        <button type="submit" class="btn btn-primary">Add Handover</button>
+    </form>
+
+    <script src="/js/patient/add_patient_handover.js"></script>
+<%- include("../includes/sidebar_bottom") %> 

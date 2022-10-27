@@ -16,11 +16,12 @@ app.use(express.json());
 app.use(express.static("public"))
 app.use(cookieParser())
 
-
+const Patient = require("./models/patient");
 app.use("*", check_user)
 app.use("/", require("./routes/auth"))
-app.get("/", protect, (req, res) => {
-    res.render("index")
+app.use("/patients", require("./routes/patient"))
+app.get("/", protect, async (req, res) => {
+    return res.redirect("/patients")
 });
 
 const PORT = process.env.PORT || 5000;

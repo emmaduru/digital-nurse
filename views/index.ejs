@@ -1,3 +1,67 @@
-<%- include("header") %>
-    <h1>Home</h1>
-<%- include("footer") %> 
+<%- include("includes/sidebar_top") %> 
+        <div class="row mb-3">
+            <div class="col-lg-3 col-md-6 mb-2">
+                <div class="card text-center">
+                    <div class="card-header">Medical Ward</div>
+                    <div class="card-body"><%= medical_patients.length %></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-2">
+                <div class="card text-center">
+                    <div class="card-header">Surgical Ward</div>
+                    <div class="card-body"><%= surgical_patients.length %></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-2">
+                <div class="card text-center">
+                    <div class="card-header">Accident and Emergency</div>
+                    <div class="card-body"><%= a_and_e_patients.length %></div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-2">
+                <div class="card text-center">
+                    <div class="card-header">Theatres</div>
+                    <div class="card-body"><%= theatre_patients.length %></div>
+                </div>
+            </div>
+        </div>
+    
+        <table id="patient-list" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Diagnosis</th>
+                    <th>Date Of Birth</th>
+                    <th>NEWS</th>
+                    <th>Ward</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (patients.length > 0) { %>
+                    <% patients.forEach(patient => { %>
+                        <tr class="patient-details-row" onclick="window.location='/patients/<%= patient._id %>';">
+                            <td><%= patient.full_name %></td>
+                            <td><%= patient.diagnosis %></td>
+                            <td><%= patient.birth_day %></td>
+                            <td><%= patient.news_score %></td>
+                            <td><%= patient.ward %></td>
+                        </tr>
+                    <% }) %> 
+                    
+                <% } else { %>
+                    <tr>
+                        <td colspan="6" class="text-center">No patients presently admitted.</td>
+                    </tr>
+                <% } %> 
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Diagnosis</th>
+                    <th>Date Of Birth</th>
+                    <th>NEWS</th>
+                    <th>Ward</th>
+                </tr>
+            </tfoot>
+        </table>
+<%- include("includes/sidebar_bottom") %>

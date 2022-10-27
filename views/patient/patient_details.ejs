@@ -1,0 +1,144 @@
+<%- include("../includes/sidebar_top") %> 
+    <div class="container">
+        <h3 class="text-center">
+          <span><%= patient.first_name %> <%= patient.last_name %></span>
+          <a href="/patients/<%= patient._id %>/edit" class="btn btn-dark"></a>
+        </h3>
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="obs-heading d-flex justify-content-between mb-3">
+                    <h5>Latest Observations</h5>
+                    <a href="/patients/<%= patient._id %>/add_obs" class="btn btn-dark">Add Observations</a>
+                </div>
+
+                <% if (observations.length > 0) { %> 
+                  <table class="table table-bordered table-responsive">
+                    <thead>
+                      <tr>
+                        <th scope="col">Time</th>
+                        <% observations.forEach((obs) => { %>
+                            <th scope="col"><%= obs.time %></th>
+                        <% }) %> 
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Pulse</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.pulse %> bpm</td>
+                        <% }) %> 
+                      </tr>
+                      <tr>
+                        <th scope="row">Respiration</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.respiration %> cpm</td>
+                        <% }) %> 
+                      </tr>
+                      <tr>
+                        <th scope="row">Blood Pressure</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.systolic_blood_pressure %> / <%= obs.diastolic_blood_pressure %> mmHg</td>
+                        <% }) %> 
+                      </tr>
+                      <tr>
+                        <th scope="row">Temperature</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.temperature %> °C</td>
+                        <% }) %> 
+                      </tr>
+                      <tr>
+                        <th scope="row">Oxygen Saturation</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.oxygen_saturation %></td>
+                        <% }) %> 
+                      </tr>
+                      <tr>
+                        <th scope="row">On Oxygen</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.on_oxygen ? "Yes" : "No" %></td>
+                        <% }) %> 
+                      </tr>
+                      <tr>
+                        <th scope="row">ACVPU</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.acvpu %></td>
+                        <% }) %> 
+                      </tr>
+                      <tr>
+                        <th scope="row">Oxygen Scale</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.oxygen_sats_scale %></td>
+                        <% }) %> 
+                      </tr>
+                      <tr>
+                        <th scope="row">NEWS</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.news_score %></td>
+                        <% }) %> 
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row">Taken By</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.nurse %></td>
+                        <% }) %> 
+                      </tr>
+                      <tr>
+                        <th scope="row">Date</th>
+                        <% observations.forEach((obs) => { %>
+                            <td scope="col"><%= obs.date %></td>
+                        <% }) %> 
+                      </tr>
+                    </tbody>
+                  </table>
+                <% } else { %>
+                  <p>No observations recorded yet.</p> 
+                  <% } %>
+            </div>
+
+            <div class="col-lg-5">  
+
+              <div class="mb-3">
+                <div class="handover-heading d-flex justify-content-between mb-3">
+                  <h5>Latest Handovers</h5>
+                  <a href="/patients/<%= patient._id %>/add_handover" class="btn btn-dark">Add Handover</a>
+                </div>
+                <div class="handovers container-fluid">
+                  <% if (handovers.length > 0) { %>
+                    <% handovers.forEach((handover) => { %>
+                      <div class="card mb-2">
+                        <div class="card-body">
+                          <a href="#">Handover for <%= handover.date %></a>
+                        </div>
+                      </div>
+                    <% }) %>  
+                  <% } else { %> 
+                    <p>No patient handovers added yet.</p>
+                  <% } %> 
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <div class="notes-heading d-flex justify-content-between mb-3">
+                  <h5>Latest Notes</h5>
+                  <a href="/patients/<%= patient._id %>/add_note" class="btn btn-dark">Add Note</a>
+                </div>
+                <div class="notes container-fluid">
+                  <% if (notes.length > 0) { %> 
+                    <% notes.forEach((note) => { %>
+                      <div class="card mb-2">
+                        <div class="card-body">
+                          <p><%= note.body %></p>
+                        </div>
+                        <div class="card-footer text-end">By <%= note.nurse %>  on <%= note.time %> <%= note.date %></div>
+                      </div>
+                    <% }) %> 
+                    <% } else { %>
+                      <p>No patient notes added yet.</p>
+                    <% } %>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+<%- include("../includes/sidebar_bottom") %> 

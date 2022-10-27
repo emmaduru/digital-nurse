@@ -26,9 +26,16 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 })
 
+userSchema.set('toObject', { virtuals: true })
+userSchema.set('toJSON', { virtuals: true })
+
 userSchema.pre("save", async function() {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
 });
+
+userSchema.virtual("full_name").get(function() {
+    return `${this.first_name} ${this.last_name}`;
+})
 
 module.exports = mongoose.model("User", userSchema);
